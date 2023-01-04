@@ -2,6 +2,7 @@
 var searchBarEl = document.querySelector('form')
 var searchBarInput = document.getElementById('searchBar')
 var cityEl = document.getElementById('city')
+var recentSearchEl = document.getElementById('recentSearch')
 
 var APIKey = 'a57f5014b4df67ec35cd48fcf3753889'
 var cityName
@@ -40,6 +41,7 @@ function getGeoLoc() {
             console.log(cityLat, cityLon, state)
 
             cityEl.textContent = `${cityName}, ${state}`
+            recentSearch()
             getWeather()
             getCurrentWeather()
         })
@@ -63,6 +65,7 @@ function getWeather() {
                 document.querySelector('#d'+(i+1)).textContent = moment(weatherData.list[(i*8)+3].dt_txt).format('MMMM Do')
                 document.querySelector('#t'+(i+1)).textContent = `${weatherData.list[(i*8)+3].main.temp}\u00B0F`
                 document.querySelector('#f'+(i+1)).textContent = weatherData.list[(i*8)+3].weather[0].main
+                document.querySelector('#icon'+(i+1)).src = `https://openweathermap.org/img/wn/${weatherData.list[(i*8)+3].weather[0].icon}@2x.png`
                 
             }
         })
@@ -87,6 +90,20 @@ function getCurrentWeather() {
         })
 }
 
+// adds last search to recent searches
+function recentSearch() {
+    const recent = document.createElement('li')
+    recent.classList.add('list-group-item','list-group-item-action')
+    recent.innerHTML = `${cityName}, ${state}`
+    recent.id = `${cityName}`
+    console.log(recent)
+    recentSearchEl.appendChild(recent)
+}
+
+// re-search previous searches
+function reSearch() {
+
+}
 
 
 // document.querySelector('#currentTemp').textContent = weatherData.list[0]
@@ -96,3 +113,11 @@ function getCurrentWeather() {
 
 // event listeners
 searchBarEl.addEventListener('submit', handleSearchBar)
+
+// document.querySelectorAll('.list-group-item').forEach(item => {
+//     item.addEventListener('click', event => {
+//       cityName = event.target.id
+//       console.log(cityName)
+//       getGeoLoc()
+//     })
+//   })
