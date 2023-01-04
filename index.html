@@ -19,72 +19,83 @@
       <main>
         <div class="container">
             <div class="row">
-                <div class="col-4 m-2 border">
+                <div class="col-3 m-2 p-2 border">
                     <h3 class="border-bottom">Search for a City</h3>
                     <form>
                         <label for="searchBar">Search</label>
                         <input type="text" id="searchBar">
+                        <button type="submit">go</button>
                     </form>
 
-                    <div id="prevSearch">
-                        <ul>
-
+                    <div class="card m-2 p-2">
+                        <div class="card-header">
+                          Recent Searches
+                        </div>
+                        <ul class="list-group list-group-flush recentSearch">
+                          <li class="list-group-item">Cras justo odio</li>
+                          <li class="list-group-item">Dapibus ac facilisis in</li>
+                          <li class="list-group-item">Vestibulum at eros</li>
                         </ul>
-                    </div>
+                      </div>
                 </div>
     
-                <div class="col-7">
+                <div class="col-8">
                     <div class="border-bottom m-2" id="currentWeather">
                         <h1 id="city">city (date)</h1>
-                        <p id="temp"></p>
-                        <p id="wind"></p>
-                        <p id="humidity"></p>
+                        <p id="currentTemp"></p>
+                        <p id="currentWind"></p>
+                        <p id="currentHumidity"></p>
                     </div>
 
                     <div id="fiveDay">
                         <h3>5 Day Forecast</h3>
                         <div class="row">
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">day</h5>
-                                        <p class="card-text">forecast</p>
+                                        <h5 id="d1" class="card-title">day</h5>
+                                        <p id="t1" class="card-text">temp</p>
+                                        <p id="f1" class="card-text">forecast</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">day</h5>
-                                        <p class="card-text">forecast</p>
+                                        <h5 id="d2" class="card-title">day</h5>
+                                        <p id="t2" class="card-text">temp</p>
+                                        <p id="f2" class="card-text">forecast</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">day</h5>
-                                        <p class="card-text">forecast</p>
+                                        <h5 id="d3" class="card-title">day</h5>
+                                        <p id="t3" class="card-text">temp</p>
+                                        <p id="f3" class="card-text">forecast</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">day</h5>
-                                        <p class="card-text">forecast</p>
+                                        <h5 id="d4" class="card-title">day</h5>
+                                        <p id="t4" class="card-text">temp</p>
+                                        <p id="f4" class="card-text">forecast</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-2">
+                            <div class="col">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">day</h5>
-                                        <p class="card-text">forecast</p>
+                                        <h5 id="d5" class="card-title">day</h5>
+                                        <p id="t5" class="card-text">temp</p>
+                                        <p id="f5" class="card-text">forecast</p>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +107,7 @@
         </div>
       </main>
     
-
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
       <script src="assets/script.js"></script>
 </body>
 </html>

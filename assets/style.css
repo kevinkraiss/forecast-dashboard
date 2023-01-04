@@ -1,3 +1,11 @@
 body {
     background-color: rgba(87, 114, 172, 0.68);
 }
+
+.container {
+    margin-left: 0%;
+}
+
+.row {
+    margin: 0%;
+}
