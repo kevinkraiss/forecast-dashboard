@@ -6,7 +6,7 @@ var recentSearchEl = document.getElementById('recentSearch')
 var fiveDayEl = document.getElementById('fiveDay')
 
 var APIKey = 'a57f5014b4df67ec35cd48fcf3753889'
-var cityName = 'oshkosh'
+var cityName
 var state
 var cityLat
 var cityLon
@@ -21,7 +21,7 @@ function handleSearchBar(event) {
 }
 
 function getGeoLoc() {
-    var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ cityName +'&limit=5&appid='+ APIKey
+    var requestUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+ cityName +'&limit=5&appid='+ APIKey
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
