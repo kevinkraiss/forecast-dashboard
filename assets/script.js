@@ -3,43 +3,35 @@ var searchBarEl = document.querySelector('form')
 var searchBarInput = document.getElementById('searchBar')
 var cityEl = document.getElementById('city')
 var recentSearchEl = document.getElementById('recentSearch')
+var fiveDayEl = document.getElementById('fiveDay')
 
 var APIKey = 'a57f5014b4df67ec35cd48fcf3753889'
-var cityName
+var cityName = 'oshkosh'
 var state
 var cityLat
 var cityLon
 var today = moment()
 
-
 //functions
+
 function handleSearchBar(event) {
     event.preventDefault()
-    console.log(searchBarInput.value)
     cityName = searchBarInput.value
     getGeoLoc()
-
 }
 
 function getGeoLoc() {
     var requestUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ cityName +'&limit=5&appid='+ APIKey
-
-    console.log(requestUrl)
-
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
         })
         .then(function(data) {
             geoLocData = data
-            console.log(geoLocData)
             cityLat = geoLocData[0].lat
             cityLon = geoLocData[0].lon
             cityName = geoLocData[0].name
             state = geoLocData[0].state
-
-            console.log(cityLat, cityLon, state)
-
             cityEl.textContent = `${cityName}, ${state}`
             recentSearch()
             getWeather()
@@ -50,40 +42,37 @@ function getGeoLoc() {
 // get weather data
 function getWeather() {
     var requestUrl = "https://api.openweathermap.org/data/2.5/forecast?lat="+cityLat+"&lon="+cityLon+"&appid="+APIKey+"&units=imperial"
-
-//    console.log(requestUrl)
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
         })
         .then (function(data) {
             weatherData = data
-            console.log(weatherData)
-            // document.querySelector('#d1').textContent = weatherData.list[2].dt_txt
-            // document.querySelector('#f1').textContent = weatherData.list[2].main.temp
             for (i=0; i<5; i++) {
-                document.querySelector('#d'+(i+1)).textContent = moment(weatherData.list[(i*8)+3].dt_txt).format('MMMM Do')
+                document.querySelector('#d'+(i+1)).textContent = moment(weatherData.list[(i*8)+3].dt_txt).format('ddd MMMM Do')
                 document.querySelector('#t'+(i+1)).textContent = `${weatherData.list[(i*8)+3].main.temp}\u00B0F`
                 document.querySelector('#f'+(i+1)).textContent = weatherData.list[(i*8)+3].weather[0].main
                 document.querySelector('#icon'+(i+1)).src = `https://openweathermap.org/img/wn/${weatherData.list[(i*8)+3].weather[0].icon}@2x.png`
-                
+                document.querySelector('#w'+(i+1)).textContent = `Wind Speed: ${weatherData.list[(i*8)+3].wind.speed} mph`
+                document.querySelector('#hm'+(i+1)).textContent = `Humidity: ${weatherData.list[(i*8)+3].main.humidity}%`   
             }
         })
+        fiveDayEl.style.display = 'block'
 }
 
 // write current weather to page
 
 function getCurrentWeather() {
     var requestUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${cityLat}&lon=${cityLon}&appid=${APIKey}&units=imperial`
-
-//    console.log(requestUrl)
     fetch(requestUrl)
         .then(function (response) {
             return response.json()
         })
         .then (function(data) {
             currentWeatherData = data
-            console.log(currentWeatherData)
+            document.querySelector('#currentDate').textContent = moment().format('ddd MMMM Do')
+            document.getElementById('currentIcon').src = `https://openweathermap.org/img/wn/${currentWeatherData.weather[0].icon}@2x.png`
+            document.querySelector('#currentCond').textContent = currentWeatherData.weather[0].main
             document.querySelector('#currentTemp').textContent = `Currently ${currentWeatherData.main.temp}\u00B0F / Feels like ${currentWeatherData.main.feels_like}\u00B0F`
             document.querySelector('#currentWind').textContent = `Current Wind Speed: ${currentWeatherData.wind.speed} mph`
             document.querySelector('#currentHumidity').textContent = `Humidity ${currentWeatherData.main.humidity}%`
@@ -96,28 +85,16 @@ function recentSearch() {
     recent.classList.add('list-group-item','list-group-item-action')
     recent.innerHTML = `${cityName}, ${state}`
     recent.id = `${cityName}`
-    console.log(recent)
-    recentSearchEl.appendChild(recent)
+    recentSearchEl.prepend(recent)
 }
-
-// re-search previous searches
-function reSearch() {
-
-}
-
-
-// document.querySelector('#currentTemp').textContent = weatherData.list[0]
-// document.querySelector('#currentWind').textContent 
-// document.querySelector('#currentHumidity').textContent 
-
 
 // event listeners
 searchBarEl.addEventListener('submit', handleSearchBar)
 
-// document.querySelectorAll('.list-group-item').forEach(item => {
-//     item.addEventListener('click', event => {
-//       cityName = event.target.id
-//       console.log(cityName)
-//       getGeoLoc()
-//     })
-//   })
+document.getElementById("recentSearch").addEventListener("click",function(e) {
+    if (e.target && e.target.matches("li")) {
+      cityName = e.target.id
+      e.target.remove()
+      getGeoLoc()
+      }
+  });

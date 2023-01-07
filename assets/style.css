@@ -4,9 +4,47 @@ body {
 
 .container {
     margin-left: 0%;
+    margin-right: 0%;
 }
 
 .row {
-    margin: 0%;
+    width: 105%;
 }
+
+.card {
+    background-color: rgba(44, 58, 150, 0.759);
+    color: white;
+}
+
+.navbar {
+    background-color: rgb(75, 94, 214);
+    color: white;
+}
+
+#fiveDay {
+    display: none;
+}
+
+input[type="text"], textarea {
+    background: rgba(44, 58, 150, 0.759);
+    margin-bottom: 10px;
+}
+
+input[type="text"]:focus, textarea {
+    background-color: rgba(87, 114, 172, 0.68);
+}
+
+button[type="submit"] {
+    background-color: rgba(44, 58, 150);
+    color: white;
+}
+
+button[type="submit"]:active {
+    background-color: rgb(75, 94, 214);
+}
+
+button[type="submit"]:focus {
+    background-color: rgb(75, 94, 214);
+}
+
 

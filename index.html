@@ -10,7 +10,7 @@
     <title>Forecast Dashboard</title>
 </head>
 <body>
-    <nav class="navbar bg-light border-bottom">
+    <nav class="navbar border-bottom">
         <div class="container-fluid">
           <span class="navbar-brand mb-0 h1">Forecast Dashboard</span>
         </div>
@@ -20,11 +20,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-3 m-2 p-2 border">
-                    <h3 class="border-bottom">Search for a City</h3>
+                    <h3 class="border-bottom pb-2">Search for a City</h3>
                     <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="searchBar">
-                            <button type="submit" class="form-control w-50">go</button>
+                        <div class="form-group m-2">
+                            <input type="text" placeholder="City Name" class="form-control" id="searchBar">
+                            <button type="submit" class="form-control w-100">Search</button>
                         </div>
                     </form>
 
@@ -38,73 +38,89 @@
                 </div>
     
                 <div class="col-8">
+
+                    
+                    
+                    
                     <div class="border-bottom m-2" id="currentWeather">
-                        <h1 id="city">city (date)</h1>
+                        <h1 id="city">Enter your city</h1>
+                        <h3 id="currentDate"></h3>
+                        <img id="currentIcon">
+                        <h5 id="currentCond"></h5>
                         <p id="currentTemp"></p>
-                        <p id="currentWind"></p>
                         <p id="currentHumidity"></p>
+                        <p id="currentWind"></p>
                     </div>
 
                     <div id="fiveDay">
                         <h3>5 Day Forecast</h3>
-                        <div class="row">
-                            <div class="col">
+                        <div class="row mx-auto">
+                            <div class="col m-2 d-flex align-items-stretch">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 id="d1" class="card-title">day</h5>
                                         <p id="t1" class="card-text">temp</p>
                                         <img id="icon1" src="">
                                         <p id="f1" class="card-text">forecast</p>
+                                        <p id="w1">wind speed</p>
+                                        <p id="hm1">humidity</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col m-2 d-flex align-items-stretch">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 id="d2" class="card-title">day</h5>
                                         <p id="t2" class="card-text">temp</p>
                                         <img id="icon2" src="">
                                         <p id="f2" class="card-text">forecast</p>
+                                        <p id="w2">wind speed</p>
+                                        <p id="hm2">humidity</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col m-2 d-flex align-items-stretch">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 id="d3" class="card-title">day</h5>
                                         <p id="t3" class="card-text">temp</p>
                                         <img id="icon3" src="">
                                         <p id="f3" class="card-text">forecast</p>
+                                        <p id="w3">wind speed</p>
+                                        <p id="hm3">humidity</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col m-2 d-flex align-items-stretch">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 id="d4" class="card-title">day</h5>
                                         <p id="t4" class="card-text">temp</p>
                                         <img id="icon4" src="">
                                         <p id="f4" class="card-text">forecast</p>
+                                        <p id="w4">wind speed</p>
+                                        <p id="hm4">humidity</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col">
+                            <div class="col m-2 d-flex align-items-stretch">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 id="d5" class="card-title">day</h5>
                                         <p id="t5" class="card-text">temp</p>
                                         <img id="icon5" src="">
                                         <p id="f5" class="card-text">forecast</p>
+                                        <p id="w5">wind speed</p>
+                                        <p id="hm5">humidity</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
